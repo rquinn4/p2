@@ -1,71 +1,43 @@
-# PHYS305 Project #2
+# Spectral Solutions to Schrödinger's Equation
 
-Welcome to the repository for **Project #2** in PHYS305.
-This project is worth **20 points**, two times of a homework.
-Hence, your team is expected to spend roughly two times more work on
-this project compared to homeworks.
-It is designed to let you apply numerical techniques that we covered
-in the classes.
-You must form teams of 3 to 6 people.
-Presentations will be scheduled for April 29th or May 1st, and the
-final code and documentation are due exactly **one week after your
-presentation**, by 11:59pm (Arizona time).
-Projects that are presented on April 29th will receive two points
-extra credits.
-Code submission is handled by GitHub classroom.
-Please use [this link](https://classroom.github.com/a/KMYdNApn) to
-join a project.
+## Introduction
 
-You are encuraged to form different teams than project 1.
-Project ideas should come from numerical methods we learn in second
-half of the class, namely, numerical integration of ODEs or PDEs, or
-Monte Carlo simulations.
-Examples of previous projects inlcude
-[Barnes-Hut simulation](https://github.com/uarizona-2022spring-phys105a/AG-Project-2),
-[3-body problem](https://github.com/uarizona-2022spring-phys105a/adelawad-Three-Body-Problem-Project-2), and
-[exoplanet statistics](https://github.com/ua-2024q3-astr513/ASTRSTATS513_final).
+The **Schrödinger equation** is the foundational equation of non-relativistic quantum mechanics. It governs the quantum behavior of particles by describing how their wavefunction evolves in space or time. In its time-independent form, it is written as:
 
-A formal written report is not required, but you must:
+Here:
+- `ψ(r)` is the wavefunction,
+- `V(r)` is the potential energy,
+- `E` is the energy eigenvalue,
+- `ħ` is the reduced Planck constant,
+- and `∇²` is the Laplacian operator.
 
-1. Submit well-documented source codes with clear comments through
-   GitHub classroom.
-   Provide docstrings and update this README to explain how to run
-   your project and discusses any dependencies.
+Analytical solutions exist for only a few potential energy functions. To study more complex systems, we use **spectral methods**—numerical techniques known for their high spatial accuracy and convergence efficiency.
 
-2. Deliver a short (about 10 minutes) presentation on April 29th or
-   May 1st, using either slides (standard presentation) or a Jupyter
-   notebook (like our class), to describe the problem you tackled and
-   how you solved it.
-   Show your numerical methods, data or results, and any plots or
-   tables that shed light on your findings.
-   Each team member should be ready to discuss their contributions.
+## Systems Studied
 
-Your project will be graded out of 20 points with the following
-general breakdown:
+This project numerically solves the time-independent Schrödinger equation using spectral methods for the following potential energy models:
 
-1. Problem Definition (4 pts): How clearly you define and motivate
-   your chosen problem (e.g., describing the physics, data, or goals)
+### 1. Square Barrier (1D)
 
-2. Code Quality & Documentation (4 pts): Correctness, clarity, ease of
-   use, and thorough commenting and README
+A finite potential barrier separating two regions. This setup illustrates quantum tunneling and the existence of bound and scattering states.
 
-3. Numerical Methods & Implementation (4 pts): Demonstrating you
-   understand the techniques you are applying and why they are
-   appropriate
+### 2. Simple Harmonic Oscillator (1D)
 
-4. Results & Presentation Materials (4 pts): Clarity of figures,
-   tables, or numerical outputs, and how convincingly you interpret
-   them
+A quadratic potential well. This model has known analytical solutions and serves as a benchmark to validate our numerical implementation.
 
-5. Oral Presentation Delivery (4 pts): How effectively your group
-   communicates your methods, addresses questions, and demonstrates
-   teamwork
+### 3. Hydrogen Atom (2D Approximation)
 
-Project is handled by GitHub classroom as well, where multiple
-students can create a single repository to track codes.
-Only one submission (code + documentation) per team is needed.
-Be sure to list all group members.
-Late submissions may not be accepted, so plan ahead and start
-early.
-We look forward to seeing your creativity and thoroughness as you
-tackle a meaningful computational physics problem!
+A two-dimensional approximation of the hydrogen atom using a Coulomb-like potential. We study the resulting bound states and degeneracy of energy levels.
+
+### 4. Double Well Potential (2D)
+
+A two-dimensional potential with two symmetric minima. This system exhibits quantum tunneling between wells and energy level splitting due to symmetry breaking.
+
+## Methodology
+
+We employ **spectral methods** to convert the Schrödinger equation into a matrix eigenvalue problem:
+
+- The spatial domain is discretized using a uniform grid.
+- The kinetic energy operator is approximated using a spectral (Fourier or sine basis) second-derivative matrix.
+- The total Hamiltonian is constructed as: `H = T + V`, where `T` is the kinetic energy matrix and `V` is the diagonal potential matrix.
+- The eigenvalues and eigenvectors of `H` give us the energy levels and wavefunctions.
