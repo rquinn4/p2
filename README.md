@@ -4,6 +4,10 @@
 
 The **Schrödinger equation** is the foundational equation of non-relativistic quantum mechanics. It governs the quantum behavior of particles by describing how their wavefunction evolves in space or time. In its time-independent form, it is written as:
 
+$$
+-\frac{\hbar^2}{2m} \nabla^2 \psi(\mathbf{r}) + V(\mathbf{r}) \psi(\mathbf{r}) = E \psi(\mathbf{r})
+$$
+
 Here:
 - `ψ(r)` is the wavefunction,
 - `V(r)` is the potential energy,
