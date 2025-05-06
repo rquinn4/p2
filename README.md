@@ -1,8 +1,6 @@
 # Spectral Solutions to Schrödinger's Equation
 
-## Introduction
-
-The **Schrödinger equation** is the foundational equation of non-relativistic quantum mechanics. It governs the quantum behavior of particles by describing how their wavefunction evolves in space or time. In its time-independent form, it is written as:
+The Schrödinger equation is the foundational equation of quantum mechanics. It describes the behavior of particles by describing how their wavefunction evolves in space or time. In its time-independent form, it is written as:
 
 $$
 -\frac{\hbar^2}{2m} \nabla^2 \psi(\mathbf{r}) + V(\mathbf{r}) \psi(\mathbf{r}) = E \psi(\mathbf{r})
@@ -10,38 +8,29 @@ $$
 
 Here:
 - `ψ(r)` is the wavefunction,
-- `V(r)` is the potential energy,
-- `E` is the energy eigenvalue,
+- `V(r)` is the potential,
+- `E` is the energy,
 - `ħ` is the reduced Planck constant,
 - and `∇²` is the Laplacian operator.
 
-Analytical solutions exist for only a few potential energy functions. To study more complex systems, we use **spectral methods**—numerical techniques known for their high spatial accuracy and convergence efficiency.
-
-## Systems Studied
+Analytical solutions exist for only a few potential energy functions. To study more complex systems, we use spectral methods.
 
 This project numerically solves the time-independent Schrödinger equation using spectral methods for the following potential energy models:
 
-### 1. Square Barrier (1D)
+1. Square Barrier
+2. Simple Harmonic Oscillator
+3. Hydrogen Atom (2D Approximation)
+4. Double Well Potential (2D)
 
-A finite potential barrier separating two regions. This setup illustrates quantum tunneling and the existence of bound and scattering states.
+There are two key features used in all the models, apart from general methods, that we use to solve the equations:
 
-### 2. Simple Harmonic Oscillator (1D)
+1. Defining a fourier space, so that the laplacian becomes just a multiplication by -k^2 (-k_x^2 - k_y^2 in 2D)
+2. Finding Eigenvalues and Eigenvectors numerically using the eigsh function from scipy.sparse.linalg
 
-A quadratic potential well. This model has known analytical solutions and serves as a benchmark to validate our numerical implementation.
+Required Dependencies:
 
-### 3. Hydrogen Atom (2D Approximation)
+1. numpy
+2. matplotlib
+3. scipy
 
-A two-dimensional approximation of the hydrogen atom using a Coulomb-like potential. We study the resulting bound states and degeneracy of energy levels.
-
-### 4. Double Well Potential (2D)
-
-A two-dimensional potential with two symmetric minima. This system exhibits quantum tunneling between wells and energy level splitting due to symmetry breaking.
-
-## Methodology
-
-We employ **spectral methods** to convert the Schrödinger equation into a matrix eigenvalue problem:
-
-- The spatial domain is discretized using a uniform grid.
-- The kinetic energy operator is approximated using a spectral (Fourier or sine basis) second-derivative matrix.
-- The total Hamiltonian is constructed as: `H = T + V`, where `T` is the kinetic energy matrix and `V` is the diagonal potential matrix.
-- The eigenvalues and eigenvectors of `H` give us the energy levels and wavefunctions.
+Team members: Luke, Ryan, Amrit
